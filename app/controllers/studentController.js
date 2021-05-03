@@ -2,7 +2,11 @@ const StudentModel = require('../models/studentModel.js')
 
 module.exports.create = async (req, res) => {
   try {
-    const student = await StudentModel.create(req.body)
+    const student = new StudentModel({
+      name: req.body.name,
+      age: req.body.age,
+    })
+    await student.save()
     res.status(201).json({
       student,
     })
