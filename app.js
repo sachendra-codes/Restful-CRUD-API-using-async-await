@@ -1,0 +1,12 @@
+const express = require('express')
+const app = express()
+const bodyparser = require('body-parser')
+app.use(bodyparser.urlencoded({ extended: true }))
+app.use(bodyparser.json())
+getConnection = require('./config/database.js')
+getConnection()
+const makeRequest = require('./app/routes/studentRoutes.js')
+makeRequest(app)
+app.listen(3000, () => {
+  console.log('Server started at port 3000')
+})
